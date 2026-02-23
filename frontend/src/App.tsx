@@ -38,15 +38,12 @@ function App() {
     }
   };
 
-  // Função baseada no que você descobriu que funciona no F12
-  const tratarEscudo = (url: string) => {
+  // Função para tratar a URL e garantir que ela use o s2-cartola da Globo
+  const getEscudoUrl = (url: string) => {
     if (!url) return 'https://s.glbimg.com/es/ge/static/comum/img/escudo-vazio.png';
-    
-    // 1. Remove qualquer "https://" ou "http://" que já exista na URL
-    const urlSemProtocolo = url.replace(/^https?:\/\//, '');
-    
-    // 2. Monta a URL exatamente no formato que a Globo aceita exibição externa
-    return `https://s2-cartola.glbimg.com/fit-in/60x60/${urlSemProtocolo}`;
+    // Removemos o protocolo para evitar links duplicados
+    const urlLimpa = url.replace(/^https?:\/\//, '');
+    return `https://s2-cartola.glbimg.com/fit-in/60x60/${urlLimpa}`;
   };
 
   return (
@@ -85,15 +82,11 @@ function App() {
                   <div className="time-info">
                     <span className="posicao">{index + 1}º</span>
                     <img 
-                      src={tratarEscudo(time.escudo)} 
-                      alt="" 
-                      className="escudo-img" 
-                      // Se falhar, coloca o escudo vazio e pronto. Sem loop.
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = 'https://s.glbimg.com/es/ge/static/comum/img/escudo-vazio.png';
-                        target.onerror = null; 
-                      }}
+                      src={getEscudoUrl(time.escudo)} 
+                      alt={time.nome} 
+                      className="escudo-img"
+                      loading="lazy"
+                      // Importante: deixamos sem o crossOrigin para o navegador carregar sem frescuras
                     />
                     <span className="nome-time">{time.nome}</span>
                   </div>
