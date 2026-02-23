@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "CommonJS",
+    "rootDir": "./src",  // <--- Adicione isso
     "outDir": "./dist",
     "esModuleInterop": true,
     "resolveJsonModule": true,
@@ -9,5 +10,5 @@
     "skipLibCheck": true,
     "moduleResolution": "node"
   },
-  "include": ["src/**/*", "api/**/*"] 
+  "include": ["src/**/*"] 
 }
