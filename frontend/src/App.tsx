@@ -19,17 +19,18 @@ function App() {
   const printRef = useRef<HTMLDivElement>(null);
 
   const buscarDados = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch('http://localhost:3000/liga');
-      const json = await response.json();
-      setDados(json);
-    } catch (error) {
-      console.error("Erro ao buscar dados:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    setLoading(true);
+    // Troque o localhost pela sua URL da Vercel + /liga
+    const response = await fetch('https://liga-cartola-mfoy.vercel.app/liga'); 
+    const json = await response.json();
+    setDados(json);
+  } catch (error) {
+    console.error("Erro ao buscar dados:", error);
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     buscarDados();
