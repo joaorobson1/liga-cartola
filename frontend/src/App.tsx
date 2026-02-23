@@ -17,12 +17,15 @@ function App() {
   const [dados, setDados] = useState<LigaData | null>(null);
   const [loading, setLoading] = useState(true);
   const printRef = useRef<HTMLDivElement>(null);
-  const API_BASE = import.meta.env.VITE_API_BASE ?? '';
+  const API_BASE = import.meta.env.VITE_API_BASE ?? 'https://backendliga.vercel.app';
 
   const buscarDados = async () => {
     try {
       setLoading(true);
       const response = await fetch(`${API_BASE}/api/liga`);
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status} ao buscar ${API_BASE}/api/liga`);
+      }
       const json = await response.json();
       setDados(json);
     } catch (error) {
