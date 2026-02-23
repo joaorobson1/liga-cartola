@@ -25,7 +25,7 @@ app.get("/liga", async (req, res) => {
 
       resultado[grupo] = dados
         .filter((time): time is TimeCartola => time !== null)
-        .sort((a, b) => b.pontosGeral - a.pontosGeral);
+        .sort((a, b, ) => b.pontosGeral - a.pontosGeral);
     }
 
     res.json(resultado);

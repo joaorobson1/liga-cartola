@@ -2,26 +2,37 @@ import express from "express";
 import cors from "cors";
 import { grupos } from "../src/ligaData";
 import { buscarPontuacao } from "../src/cartolaService";
+import pontosR1 from "../src/pontosR1.json";
 
 const app = express();
-
-// Configuração do CORS para permitir que seu frontend acesse a API
 app.use(cors());
 app.use(express.json());
 
 app.get("/liga", async (req, res) => {
   try {
     const resultado: any = {};
+    const descontos: any = pontosR1;
 
-    // Percorre cada grupo (A, B, C...) definido no seu ligaData.ts
-    for (const [nomeGrupo, ids] of Object.entries(grupos)) {
-      const promessas = ids.map(id => buscarPontuacao(id));
+    // Usamos Object.entries com 'any' para evitar o erro de sublinhado no 'ids'
+    for (const [nomeGrupo, ids] of Object.entries(grupos as any)) {
+      
+      // Aqui tratamos ids como uma lista de qualquer tipo (string ou number)
+      const listaIds = ids as any[]; 
+      const promessas = listaIds.map(id => buscarPontuacao(id));
+      
       const timesBusca = await Promise.all(promessas);
       
-      // Filtra times que deram erro na busca e ordena por pontuação geral
       resultado[nomeGrupo] = timesBusca
         .filter(t => t !== null)
-        .sort((a, b) => (b?.pontosGeral || 0) - (a?.pontosGeral || 0));
+        .map((time: any) => {
+          // Buscamos o desconto convertendo o ID para string para bater com o JSON
+          const desconto = descontos[String(time.id)] || 0;
+          return {
+            ...time,
+            pontosGeral: Number((time.pontosRodada + desconto).toFixed(2))
+          };
+        })
+        .sort((a, b) => b.pontosGeral - a.pontosGeral);
     }
 
     res.json(resultado);
@@ -31,5 +42,4 @@ app.get("/liga", async (req, res) => {
   }
 });
 
-// IMPORTANTE: Remova qualquer app.listen(3000) daqui de dentro
 export default app;
