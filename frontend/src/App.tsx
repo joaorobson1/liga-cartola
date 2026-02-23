@@ -21,7 +21,7 @@ function App() {
   const buscarDados = async () => {
     try {
       setLoading(true);
-      const response = await fetch('https://ligaobichovaipegar2026.vercel.app/');
+      const response = await fetch('https://ligaobichovaipegar2026.vercel.app/liga');
       const json = await response.json();
       setDados(json);
     } catch (error) {
