@@ -142,9 +142,10 @@ header {
 }
 
 .escudo-img {
-  width: 26px;
-  height: 26px;
+  width: 26px;      /* Tamanho fixo para não bagunçar o card */
+  height: 26px;     /* Tamanho fixo */
   object-fit: contain;
+  display: block;   /* Garante que não haja espaços vazios ao redor */
 }
 
 .nome-time {
