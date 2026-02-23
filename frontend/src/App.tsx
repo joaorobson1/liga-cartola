@@ -17,11 +17,12 @@ function App() {
   const [dados, setDados] = useState<LigaData | null>(null);
   const [loading, setLoading] = useState(true);
   const printRef = useRef<HTMLDivElement>(null);
+  const API_BASE = import.meta.env.VITE_API_BASE ?? '';
 
   const buscarDados = async () => {
     try {
       setLoading(true);
-      const response = await fetch('https://ligaobichovaipegar2026.vercel.app/liga');
+      const response = await fetch(`${API_BASE}/api/liga`);
       const json = await response.json();
       setDados(json);
     } catch (error) {
