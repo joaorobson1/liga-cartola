@@ -1,59 +1,44 @@
-/* Layout Principal e Centralização Total */
+/* Layout Principal */
 .container {
-  max-width: 1600px; 
-  margin: 0 auto; /* Centraliza o container na página */
-  padding: 20px;
+  max-width: 1400px; 
+  margin: 0 auto;
+  padding: 40px 20px;
   background-color: #0f172a;
   color: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', system-ui, sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza header e botões */
+  align-items: center; /* Centraliza tudo */
 }
 
-/* Header e Título Laranja Centralizado */
-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 40px;
-  width: 100%;
-}
-
-.titulo-centralizado {
+/* Título Laranja */
+.titulo-centralizado h1 {
+  color: #f97316;
+  font-size: 2.5rem;
+  margin: 10px 0;
+  font-weight: 800;
+  text-transform: uppercase;
   text-align: center;
 }
 
-.titulo-centralizado h1 {
-  color: #f97316; /* Laranja vibrante solicitado */
-  font-size: 2.8rem;
-  margin: 10px 0;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-}
-
-.emoji-grande {
-  font-size: 3rem;
-}
-
-/* Botões Azuis Modernos */
+/* Botões Azuis Estilizados */
 .buttons-container {
   display: flex;
   gap: 15px;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
 .btn-azul {
-  background-color: #2563eb; /* Azul solicitado */
+  background-color: #2563eb;
   color: white;
   border: none;
-  padding: 10px 24px;
+  padding: 12px 24px;
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .btn-azul:hover {
@@ -61,127 +46,77 @@ header {
   transform: translateY(-2px);
 }
 
-/* Grid de 4 Colunas Centralizada */
+/* Grid Centralizada */
 .grid-grupos {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Força 4 colunas por linha */
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   width: 100%;
-  justify-content: center;
 }
 
 .grupo-card {
   background: #1e293b;
   border-radius: 12px;
-  padding: 18px;
+  padding: 15px;
   border: 1px solid #334155;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-.grupo-card h3 {
-  color: #f8fafc;
-  font-size: 0.95rem;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #334155;
-  padding-bottom: 8px;
-  text-align: left;
-}
-
-/* Sincronia de Cabeçalho e Valores */
 .header-tabela {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   font-size: 0.65rem;
-  color: #64748b;
-  padding: 0 5px 8px 5px;
+  color: #94a3b8;
+  font-weight: bold;
+  margin-bottom: 8px;
   border-bottom: 1px solid #334155;
-  margin-bottom: 10px;
+  padding-bottom: 5px;
 }
 
-.pontos-labels {
-  display: flex;
-  gap: 0;
-}
-
-.pontos-labels span {
-  width: 65px; /* Largura fixa para alinhar com os números abaixo */
+/* Alinhamento Milimétrico dos Pontos */
+.pontos-labels { display: flex; }
+.pontos-labels span, .pts-rodada, .pts-geral {
+  width: 65px; 
   text-align: right;
 }
 
-/* Linhas dos Times e Destaque para Líderes (1º e 2º) */
 .time-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 5px;
-  border-bottom: 1px solid rgba(51, 65, 85, 0.2);
+  padding: 8px 0;
 }
 
 .destaque-lider {
-  background: rgba(249, 115, 22, 0.08); /* Destaque para classificados */
-  border-radius: 6px;
-}
-
-.destaque-lider .posicao {
-  color: #fbbf24; /* Posição dourada para os líderes */
+  background: rgba(249, 115, 22, 0.1);
+  border-radius: 4px;
 }
 
 .time-info {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex: 1;
-  min-width: 0;
 }
 
-.posicao {
-  font-size: 0.85rem;
-  font-weight: bold;
-  width: 25px;
-}
-
-.escudo-img {
-  width: 26px;      /* Tamanho fixo para não bagunçar o card */
-  height: 26px;     /* Tamanho fixo */
-  object-fit: contain;
-  display: block;   /* Garante que não haja espaços vazios ao redor */
+.escudo-img-bola {
+  width: 18px;
+  height: 18px;
+  filter: invert(1);
+  opacity: 0.4;
 }
 
 .nome-time {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-right: 10px;
-  max-width: 180px; /* Espaço generoso para nomes longos */
+  max-width: 130px;
 }
 
-/* Container de Pontos Alinhados na Direita */
-.pontos-container {
-  display: flex;
-  gap: 0;
-}
+.pontos-container { display: flex; }
+.pts-rodada { color: #60a5fa; }
+.pts-geral { color: #fbbf24; font-weight: bold; }
 
-.pts-rodada {
-  color: #60a5fa;
-  width: 65px;
-  text-align: right;
-  font-size: 0.9rem;
-}
-
-.pts-geral {
-  color: #fbbf24;
-  font-weight: bold;
-  width: 65px;
-  text-align: right;
-  font-size: 0.9rem;
-}
-
-/* Ajustes de Responsividade */
-@media (max-width: 1450px) {
-  .grid-grupos { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 768px) {
-  .grid-grupos { grid-template-columns: 1fr; }
-}
+/* Responsividade */
+@media (max-width: 1300px) { .grid-grupos { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) { .grid-grupos { grid-template-columns: 1fr; } }
